@@ -15,7 +15,7 @@ def encrypt(key: bytes, plaintext: bytes) -> bytes:
     box = nacl.secret.SecretBox(key)
     return bytes(box.encrypt(plaintext))
 
-def decrypt(key, blob) -> bytes:
+def decrypt(key: bytes, blob: bytes) -> bytes:
     if len(key) != KEY_LENGTH:
         raise InvalidParametersError()
 
