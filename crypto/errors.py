@@ -8,3 +8,6 @@ class DecryptionError(CryptoError):
 
 class InvalidParametersError(CryptoError):
     """bad salt length, or KDF settings outside the allowed bounds"""
+
+class FormatError(CryptoError):
+    """bad magic bytes, unsupported version, unsupported KDF id, and truncated files"""

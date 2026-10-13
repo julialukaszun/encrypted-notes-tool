@@ -11,6 +11,10 @@ MAX_MEMORY_BYTES = 1024 * 1024 * 1024     # reject settings that could crash the
 MIN_ITERATIONS = 2
 MAX_ITERATIONS = 10
 
-# file format (used later by the format module)
+# file format
 MAGIC_BYTES = b"NOTESv"
+HEADER_SIZE = 32
+MIN_BODY_SIZE = 40
+HEADER_FORMAT = '>6sBBII16s'
 FORMAT_VERSION = 1
+KDF_ID = 1
