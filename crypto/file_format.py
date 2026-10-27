@@ -1,6 +1,6 @@
+# file_format.py
 import struct
 from typing import Tuple, Any
-
 from crypto.constants import (SALT_LENGTH, MAGIC_BYTES, FORMAT_VERSION,
                               KDF_ID, HEADER_FORMAT, HEADER_SIZE, MIN_BODY_SIZE)
 from crypto.errors import InvalidParametersError, FormatError
@@ -10,12 +10,12 @@ def encode(salt: bytes, memory_bytes: int, iterations: int, blob: bytes) -> byte
     if len(salt) != SALT_LENGTH:
         raise InvalidParametersError("invalid salt length") from None
 
-    try:
+    try: # magic bytes (6), format version (1), KDF id (1), memory cost (4), iterations (4), salt (16)
         header = struct.pack(HEADER_FORMAT,MAGIC_BYTES, FORMAT_VERSION, KDF_ID, memory_bytes, iterations, salt)
     except struct.error:
         raise InvalidParametersError("header field out of range") from None
 
-    return header + blob
+    return header + blob # blob is body
 
 def decode(data: bytes) -> tuple[bytes, int, int, bytes]:
 
